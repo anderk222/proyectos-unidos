@@ -1,41 +1,24 @@
 <div class="min-h-screen  h-screen flex gap-2 flex-col p-2">
 
-    <h1>States</h1>
+    <h1>Provinces</h1>
 
     <div class="flex flex-wrap h-fit gap-4 pb-20 justify-center md:justify-normal">
 
-        <figure class="gap-4 w-[353px] flex flex-col shadow-md rounded-sm">
+        <figure *ngFor="let state of stateService.states"
+         class="gap-4 w-[353px] flex justify-between flex-col shadow-md rounded-sm">
 
-            <img width="353" height="309" src="assets/panesillo.jpg" alt="">
+            <img width="353" height="309"  [src]="state.img" alt="">
             <div class="gap-4 flex flex-col p-2 " >
-            <p>Pichuncha</p>
-            <button routerLink="/places/panecillo/state" class="bg-black w-fit self-end text-white p-2 rounded-sm  " >See places</button>
+            <p>{{state.name}}</p>
+            <button [routerLink]="'/places/'+state.name+'/state'" class="bg-black w-fit self-end text-white p-2 rounded-sm  " >See places</button>
         </div>
         </figure>
-        <figure class="gap-4 w-[353px] flex flex-col shadow-md rounded-sm">
 
-            <img width="353" height="309" src="assets/panesillo.jpg" alt="">
-            <div class="gap-4 flex flex-col p-2 " >
-            <p>Pichuncha</p>
-            <button routerLink="/places/panecillo/state" class="bg-black w-fit self-end text-white p-2 rounded-sm  " >See places</button>
-        </div>
-        </figure>
-        <figure class="gap-4 w-[353px] flex flex-col shadow-md rounded-sm">
+    </div>
+    <div *ngIf="loading" class="h-full  w-full flex flex-col pb-32 justify-center items-center" >
 
-            <img width="353" height="309" src="assets/panesillo.jpg" alt="">
-            <div class="gap-4 flex flex-col p-2 " >
-            <p>Pichuncha</p>
-            <button routerLink="/places/panecillo/state" class="bg-black w-fit self-end text-white p-2 rounded-sm  " >See places</button>
-        </div>
-        </figure>
-        <figure class="gap-4 w-[353px] flex flex-col shadow-md rounded-sm">
-
-            <img width="353" height="309" src="assets/panesillo.jpg" alt="">
-            <div class="gap-4 flex flex-col p-2 " >
-            <p>Pichuncha</p>
-            <button routerLink="/places/panecillo/state" class="bg-black w-fit self-end text-white p-2 rounded-sm  " >See places</button>
-        </div>
-        </figure>
+        <img width="170" src="assets/load.webp" alt="" srcset=""/>
+        <p class="text-zinc-600" >Loading provinces...</p>
 
     </div>
 

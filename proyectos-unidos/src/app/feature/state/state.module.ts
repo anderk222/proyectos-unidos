@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 
@@ -13,7 +14,7 @@ const routes : Route[] = [
 ]
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [CommonModule,RouterModule.forChild(routes)],
     exports: [],
     declarations: [StatesComponent],
     providers: [],
