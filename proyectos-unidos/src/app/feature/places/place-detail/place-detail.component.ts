@@ -18,11 +18,15 @@ export class PlaceDetailComponent implements OnInit {
   place: Place = {
     capital: '',
     clima: '',
-    detalle : '',
+    detalle: '',
     name: '',
     img: '',
     ropa: []
   };
+
+
+  state: 'load' | 'error' | 'ok' = 'ok';
+  ropa = '';
 
   ngOnInit(): void {
 
@@ -34,11 +38,52 @@ export class PlaceDetailComponent implements OnInit {
 
   open = false;
 
-  toggle() { this.open = !this.open }
+  openImage(img : string) { 
+    
+    this.open = !this.open 
+    this.ropa = img;
+  }
 
   private getPlace(place: string) {
 
-    this.place = this.placeService.places.find((p) => p.name == place)!
+    let search = this.placeService.places.find((p) => p.name == place);
+
+    if (!search) {
+
+      this.state = 'load';
+      this.placeService.getAll().subscribe({
+        next: () => {
+
+          search = this.placeService.places.find((p) => p.name == place);
+          this.place = search ? (() => {
+
+            this.state = 'ok'
+            return search;
+          })() : (() => {
+            this.state = 'error'
+            return this.place;
+          })()
+
+        },
+        error: () => {
+          /* alert('A error has been happended') */
+          this.state = 'error';
+
+        }
+      })
+
+    }
+
+    this.place = search ? (() => {
+
+      this.state = 'ok'
+      return search;
+    })() : (() => {
+      this.state = 'error'
+      return this.place;
+    })()
+    console.log(this.state);
+    
 
   }
 

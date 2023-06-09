@@ -1,0 +1,11 @@
+<h2>States</h2>
+
+<div class="flex overflow-x-scroll h-scroll  gap-2 text-white text-base py-3 ">
+
+    <div *ngFor="let state of states" 
+    [routerLink]="'/places/'+ state+'/state'"
+    class="bg-[#626CC1] rounded-2xl py-[4px]  shadow-md  px-5  cursor-pointer">
+        {{state}}
+    </div>     
+
+</div>

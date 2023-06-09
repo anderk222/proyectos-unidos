@@ -2,11 +2,25 @@
 <div class="min-h-screen  h-screen flex flex-col p-2">
       
     <input 
+    #value
     class="border-b-2 focus:outline-none focus:border-zinc-700 p-3 "
     type="search" 
-    placeholder="Search places...">
+    placeholder="Search places..."
+    (keyup)="search(value.value)"
+    
+    >
 
-    <div class="flex flex-col h-full items-center justify-center">
+    <ul class="flex py-4 p-2 gap-2 flex-col " >
+        <li
+        [routerLink]="['/places/', place]" 
+        *ngFor="let place of filtered" 
+        class="cursor-pointer border-b p-2">
+          {{place}}
+
+        </li>
+    </ul>
+
+    <div *ngIf="filtered.length == 0" class="flex flex-col h-full items-center justify-center">
 
         <p class="self-centers">
 

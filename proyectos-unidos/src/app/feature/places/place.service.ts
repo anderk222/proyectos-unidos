@@ -26,4 +26,17 @@ export class PlaceService {
     return this.http.get<Place[]>(`${this.url}/${state}/state`, { headers : this.httpHeader })
 
   }
+
+  public findNames(){
+
+    return this.http
+  .get<string[]>(`${this.url}/names`, {  headers : this.httpHeader});
+
+  }
+
+  public getAll(){
+
+    return this.http.get<Place[]>(`${this.url}/all`, { headers : this.httpHeader });
+
+  }
 }
